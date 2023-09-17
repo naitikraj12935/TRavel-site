@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect} from 'react'
+import Services from './components/Services'
+import NevBar from './components/NevBar'
+import Recommend from './components/Recommend'
+import Testimonial from './components/Testimonial'
+import ScrollToTop from './components/ScrollToTop'
+import Footer from './components/Footer'
+import Hero from './components/Hero'
+import Question from './components/Questions'
+import scrollreveal from 'scrollreveal'
 
-function App() {
+export default function App() {
+  useEffect(()=>{
+    const sr=scrollreveal({
+      origin:"top",
+      distance:"80px",
+      duration:2000,
+      reset:true,
+    });
+    sr.reveal(
+      `nav,
+      #hero,
+      #services,
+      #recommend,
+      `,
+      {
+        opacity:0,
+        interval:200,
+      }
+      )
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <>
+   <NevBar/>
+    <Hero/>
+    <Services/>
+    
+    <Recommend/>
+    <Testimonial/>
+    <Question/>
+    <ScrollToTop/>
+    <Footer/>
+   
+   </>
+  )
 }
 
-export default App;
